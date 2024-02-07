@@ -1,1 +1,1 @@
-# AitrichAcademyMeanStack-AitrichAcademyMeanStack-personal-finance-manager-workshop-docker
+# AitrichAcademyMeanStack-personal-finance-manager-workshop-docker
