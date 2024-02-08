@@ -1,7 +1,7 @@
 version: '3.3'
 services:
   frontend:
-    build: ./personal-finance-manager-workshop-angular-with-node--integration
+    build: ./personal-finance-manager-workshop-frontend
     ports:
       - "4200:80"
     networks:
@@ -48,6 +48,16 @@ services:
       ME_CONFIG_MONGODB_URL: mongodb://mongoadmin:mongoadmin@mongo:27017/ 
     depends_on:
       - mongo
+    networks:
+      - pfm
+  portainer:
+    image: portainer/portainer-ce
+    container_name: portainer
+    restart: always
+    ports:
+      - "9000:9000"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
     networks:
       - pfm
 
