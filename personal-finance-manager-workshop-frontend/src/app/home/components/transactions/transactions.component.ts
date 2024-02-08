@@ -1,7 +1,9 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
-import { Chart } from 'chart.js/auto';
+import { Chart , CategoryScale , LinearScale, Title , Tooltip , Legend, ArcElement  } from 'chart.js/auto';
 import { FinanceService } from '../../services/finance.service';
-
+import { ExpenseComponent } from '../../expense/expense.component';
+import { Expense } from '../../models/Expense';
+import { ExpenseService } from '../../services/expense.service';
 
 @Component({
   selector: 'app-transactions',
@@ -13,8 +15,12 @@ export class TransactionsComponent implements OnInit {
   totalIncome: number = 0;
   totalBalance: number = 0;
 
-  @ViewChild('myChart') chartCanvas!: ElementRef;
-  constructor(private financeService: FinanceService) {}
+  @ViewChild('myChart') chartCanvas!: ElementRef<HTMLCanvasElement>;
+  constructor(
+    private financeService: FinanceService,
+  ) {}
+
+  totalExp: Expense | any;
 
   ngOnInit(): void {
     this.financeService.totalExpense$.subscribe((total) => {
@@ -43,8 +49,8 @@ export class TransactionsComponent implements OnInit {
   }
 
   //Configuring chart
-  showChart(dates: any[], expenses: any[], incomes: any[]): void {
-    new Chart(this.chartCanvas.nativeElement, {
+  showChart(dates: any[], expenses: any[] , incomes: any[]): void {
+  new Chart(this.chartCanvas.nativeElement, {
       type: 'line',
       data: {
         labels: dates,
@@ -63,7 +69,7 @@ export class TransactionsComponent implements OnInit {
           },
         ],
       },
-      options: {
+       options: {
         scales: {
           y: {
             beginAtZero: true,
@@ -71,5 +77,5 @@ export class TransactionsComponent implements OnInit {
         },
       },
     });
-  }
+    } 
 }

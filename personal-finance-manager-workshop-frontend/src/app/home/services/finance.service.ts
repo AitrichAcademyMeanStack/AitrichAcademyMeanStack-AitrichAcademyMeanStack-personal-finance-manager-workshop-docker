@@ -71,7 +71,7 @@ export class FinanceService {
         // Ensure expenses is an array
         if (Array.isArray(expenses)) {
           expenses.forEach((expense: any) => {
-            if (expense.date && expense.amount !== undefined) {
+            if (expense.date && expense.amount !== undefined) { 
               // Cast incomes to the appropriate type to support the 'find' method
               const incomesArray: any[] = incomes as any[];
               // Find corresponding income data for the expense date
@@ -79,7 +79,7 @@ export class FinanceService {
                 (income: any) => income.date === expense.date
               );
 
-              financeData.push({
+              financeData.push({  
                 date: expense.date,
                 expense: expense.amount,
                 income: correspondingIncome ? correspondingIncome.amount : 0,
